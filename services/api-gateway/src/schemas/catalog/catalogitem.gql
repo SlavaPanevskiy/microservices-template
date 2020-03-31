@@ -8,3 +8,7 @@ type CatalogItem {
 type Query {
   getCatalogItems: [CatalogItem]
 }
+
+type Mutation {
+  createCatalogItem: CatalogItem
+}

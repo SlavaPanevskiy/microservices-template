@@ -14,4 +14,11 @@ export class CatalogItemService {
         { someParam: 15 }
     ).toPromise();
   }
+
+  public async createCatalogItem(): Promise<CatalogItem> {
+    return this.client.send<CatalogItem>(
+        { type: 'create-catalog-item' },
+        { someParam: 15 }
+    ).toPromise();
+  }
 }

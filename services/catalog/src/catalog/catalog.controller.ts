@@ -20,4 +20,14 @@ export class CatalogController {
       }
     ];
   }
+
+  @MessagePattern({ type: 'create-catalog-item' })
+  public async createCatalogItem(): Promise<{}> {
+    return {
+        id: '1',
+        name: 'Cup',
+        description: 'A good item',
+        price: 100
+      }
+  }
 }
