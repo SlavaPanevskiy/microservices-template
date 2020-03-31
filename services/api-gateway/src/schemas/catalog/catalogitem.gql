@@ -1,0 +1,10 @@
+type CatalogItem {
+  id: String
+  name: String
+  description: String
+  price: Int
+}
+
+type Query {
+  getCatalogItems: [CatalogItem]
+}
