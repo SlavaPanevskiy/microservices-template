@@ -1,13 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import {Inject, Injectable} from '@nestjs/common';
 import { CatalogItem } from '../../schemas/graphql';
 import {Client, ClientProxy, Transport} from "@nestjs/microservices";
 
 @Injectable()
 export class CatalogItemService {
-  @Client({
-    transport: Transport.TCP,
-  })
-  client: ClientProxy;
+  constructor(
+      @Inject('CATALOG_SERVICE') private client: ClientProxy,
+  ) {}
 
   public async getCatalogItems(): Promise<CatalogItem[]> {
     return this.client.send<CatalogItem[]>(

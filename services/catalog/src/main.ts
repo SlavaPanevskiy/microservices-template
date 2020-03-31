@@ -4,7 +4,10 @@ import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.TCP
+    transport: Transport.NATS,
+    options: {
+      url: 'nats://localhost:4222',
+    },
   });
 
   await app.listenAsync();
