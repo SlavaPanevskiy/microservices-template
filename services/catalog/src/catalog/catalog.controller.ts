@@ -1,33 +1,18 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
+import {CatalogService} from "./catalog.service";
 
 @Controller('catalog')
 export class CatalogController {
+  constructor(private readonly catalogService: CatalogService) {}
+
   @MessagePattern({ type: 'get-catalog-items' })
   public async getCatalogItems(): Promise<{}[]> {
-    return [
-      {
-        id: '1',
-        name: 'Cup',
-        description: 'A good item',
-        price: 100
-      },
-      {
-        id: '2',
-        name: 'Teapot',
-        description: `Another good item`,
-        price: 200
-      }
-    ];
+    return this.catalogService.listItems();
   }
 
   @MessagePattern({ type: 'create-catalog-item' })
   public async createCatalogItem(): Promise<{}> {
-    return {
-        id: '1',
-        name: 'Cup',
-        description: 'A good item',
-        price: 100
-      }
+    return this.catalogService.createItem();
   }
 }
