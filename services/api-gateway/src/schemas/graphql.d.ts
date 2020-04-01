@@ -13,12 +13,6 @@ export interface CatalogItem {
     price?: number;
 }
 
-export interface CreateItemParams {
-    name?: string;
-    description?: string;
-    price?: number;
-}
-
 export interface IMutation {
     createCatalogItem(): CatalogItem | Promise<CatalogItem>;
 }
