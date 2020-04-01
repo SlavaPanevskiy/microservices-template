@@ -10,14 +10,14 @@ export class CatalogItemService {
 
   public async getCatalogItems(): Promise<CatalogItem[]> {
     return this.client.send<CatalogItem[]>(
-        { type: 'get-catalog-items' },
+        { type: 'get-products' },
         { someParam: 15 }
     ).toPromise();
   }
 
   public async createCatalogItem(): Promise<CatalogItem> {
     return this.client.send<CatalogItem>(
-        { type: 'create-catalog-item' },
+        { type: 'create-product' },
         { someParam: 15 }
     ).toPromise();
   }

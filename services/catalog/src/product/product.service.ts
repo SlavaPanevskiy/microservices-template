@@ -1,18 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from "@nestjs/microservices";
-import { CatalogItemCreatedEvent } from "./events/CatalogItemCreatedEvent";
+import { ProductCreatedEvent } from "./events/ProductCreatedEvent";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CatalogItem } from "./catalog-item.entity";
+import { Product } from "./product.entity";
 import { Repository } from "typeorm";
-import  * as faker from 'faker';
+import * as faker from 'faker';
 
 @Injectable()
-export class CatalogService {
+export class ProductService {
   constructor(
     @Inject('CATALOG_SERVICE')
     private client: ClientProxy,
-    @InjectRepository(CatalogItem)
-    protected readonly repository: Repository<CatalogItem>,
+    @InjectRepository(Product)
+    protected readonly repository: Repository<Product>,
   ) {
   }
 
@@ -21,14 +21,14 @@ export class CatalogService {
   }
 
   async createItem() {
-    const product = new CatalogItem();
+    const product = new Product();
     product.name = faker.commerce.productName();
     product.description = faker.commerce.product();
     product.price = faker.commerce.price();
 
     await this.repository.save(product);
 
-    this.client.emit<number>('catalog_item_created', new CatalogItemCreatedEvent());
+    this.client.emit<number>('product_created', new ProductCreatedEvent());
 
     return product;
   }

@@ -1,22 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CatalogController } from "./catalog/catalog.controller";
-import { ClientsModule, Transport } from "@nestjs/microservices";
-import { CatalogService } from './catalog/catalog.service';
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { CatalogItem } from "./catalog/catalog-item.entity";
+import { Product } from "./product/product.entity";
+import { ProductModule } from "./product/product.module";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ CatalogItem ]),
-    ClientsModule.register([
-      {
-        name: 'CATALOG_SERVICE',
-        transport: Transport.NATS,
-        options: {
-          url: 'nats://localhost:4222',
-        }
-      },
-    ]),
     TypeOrmModule.forRoot({
       type: "postgres",
       host: "localhost",
@@ -24,11 +12,12 @@ import { CatalogItem } from "./catalog/catalog-item.entity";
       username: "postgres",
       password: "password",
       database: "catalog",
-      entities: [ CatalogItem ],
+      entities: [ Product ],
       synchronize: true,
     }),
+    ProductModule
   ],
-  controllers: [CatalogController],
-  providers: [CatalogService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
