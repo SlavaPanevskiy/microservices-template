@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CatalogItemService } from './catalog-item/catalog-item-client.service';
 import { CatalogItemResolver } from './catalog-item/catalog-item.resolver';
-import {ClientsModule, Transport} from "@nestjs/microservices";
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
@@ -11,12 +11,11 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
         transport: Transport.NATS,
         options: {
           url: 'nats://localhost:4222',
-        }
+        },
       },
-    ])
+    ]),
   ],
-  providers: [
-      CatalogItemService, CatalogItemResolver],
-  exports: [CatalogItemResolver]
+  providers: [CatalogItemService, CatalogItemResolver],
+  exports: [CatalogItemResolver],
 })
 export class CatalogModule {}

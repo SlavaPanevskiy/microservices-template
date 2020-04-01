@@ -9,7 +9,9 @@ describe('Product Controller', () => {
     }).compile();
   });
   it('should be defined', () => {
-    const controller: ProductController = module.get<ProductController>(ProductController);
+    const controller: ProductController = module.get<ProductController>(
+      ProductController,
+    );
     expect(controller).toBeDefined();
   });
 });

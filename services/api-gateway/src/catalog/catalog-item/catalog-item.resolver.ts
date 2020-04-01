@@ -1,4 +1,4 @@
-import {Mutation, Query, Resolver} from '@nestjs/graphql';
+import { Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CatalogItem } from '../../schemas/graphql';
 import { CatalogItemService } from './catalog-item-client.service';
 

@@ -9,18 +9,18 @@ const env = process.env.GRAPHQL_ENV;
 const gqlModule =
   env === 'production'
     ? GraphQLModule.forRoot({
-        typePaths: ['./**/*.gql']
+        typePaths: ['./**/*.gql'],
       })
     : GraphQLModule.forRoot({
         typePaths: ['./**/*.gql'],
         definitions: {
-          path: join(process.cwd(), 'src/schemas/graphql.d.ts')
-        }
+          path: join(process.cwd(), 'src/schemas/graphql.d.ts'),
+        },
       });
 
 @Module({
   imports: [gqlModule, CatalogModule],
   controllers: [],
-  providers: []
+  providers: [],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Controller, Logger } from '@nestjs/common';
 import { EventPattern, MessagePattern } from '@nestjs/microservices';
-import { ProductService } from "./product.service";
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
@@ -20,6 +20,6 @@ export class ProductController {
 
   @EventPattern('product_created')
   public async handleItemCreated(data: any) {
-    this.logger.log('Product created event recievied')
+    this.logger.log('Product created event received');
   }
 }
