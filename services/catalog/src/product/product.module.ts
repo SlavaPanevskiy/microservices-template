@@ -4,6 +4,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
+import { CqrsModule } from "@nestjs/cqrs";
+import { CommandHandlers } from "./commands/handlers";
 
 @Module({
   imports: [
@@ -17,8 +19,12 @@ import { ProductService } from './product.service';
         },
       },
     ]),
+    CqrsModule
   ],
   controllers: [ProductController],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    ...CommandHandlers,
+  ],
 })
 export class ProductModule {}
