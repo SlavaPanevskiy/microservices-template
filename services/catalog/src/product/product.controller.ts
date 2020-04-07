@@ -4,6 +4,7 @@ import { ProductService } from './product.service';
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateProductCommand } from "./commands/impl/create-product.command";
 import * as faker from 'faker';
+import { ListProductsQuery } from "./queries/impl";
 
 @Controller('product')
 export class ProductController {
@@ -18,7 +19,7 @@ export class ProductController {
 
   @MessagePattern({ type: 'get-products' })
   public async getProductItems(): Promise<{}[]> {
-    return this.productService.listItems();
+    return this.queryBus.execute(new ListProductsQuery());
   }
 
   @MessagePattern({ type: 'create-product' })

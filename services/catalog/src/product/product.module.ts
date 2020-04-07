@@ -6,6 +6,7 @@ import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
 import { CqrsModule } from "@nestjs/cqrs";
 import { CommandHandlers } from "./commands/handlers";
+import { QueryHandlers } from "./queries/handlers";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CommandHandlers } from "./commands/handlers";
   providers: [
     ProductService,
     ...CommandHandlers,
+    ...QueryHandlers,
   ],
 })
 export class ProductModule {}

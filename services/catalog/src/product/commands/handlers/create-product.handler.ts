@@ -1,5 +1,4 @@
 import { CommandHandler, EventBus, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
-import * as clc from 'cli-color';
 import { CreateProductCommand } from "../impl/create-product.command";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Product } from "../../product.entity";
