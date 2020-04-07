@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientProxy, EventPattern } from '@nestjs/microservices';
 import { ProductCreatedEvent } from './events/ProductCreatedEvent';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
@@ -30,5 +30,10 @@ export class ProductService {
     this.client.emit<number>('product_created', new ProductCreatedEvent());
 
     return product;
+  }
+
+  @EventPattern('product_created')
+  public async handleItemCreated(data: any) {
+    console.log('Product created event received');
   }
 }

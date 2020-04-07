@@ -9,12 +9,12 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @MessagePattern({ type: 'get-products' })
-  public async getproductItems(): Promise<{}[]> {
+  public async getProductItems(): Promise<{}[]> {
     return this.productService.listItems();
   }
 
   @MessagePattern({ type: 'create-product' })
-  public async createproductItem(): Promise<{}> {
+  public async createProductItem(): Promise<{}> {
     return this.productService.createItem();
   }
 
