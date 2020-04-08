@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy, EventPattern } from '@nestjs/microservices';
-import { ProductCreatedEvent } from './events/ProductCreatedEvent';
+import { ProductCreatedEvent } from './events/product-created.event';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './product.entity';
+import { Product } from './domain/product.entity';
 import { Repository } from 'typeorm';
 import * as faker from 'faker';
 

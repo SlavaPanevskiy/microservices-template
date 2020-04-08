@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
-import { Product } from './product.entity';
+import { Product } from './domain/product.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
-import { CqrsModule } from "@nestjs/cqrs";
-import { CommandHandlers } from "./commands/handlers";
-import { QueryHandlers } from "./queries/handlers";
+import { CqrsModule } from '@nestjs/cqrs';
+import { CommandHandlers } from './commands/handlers';
+import { QueryHandlers } from './queries/handlers';
+import { Discount } from './domain/dicount.entity';
+import { EventHandlers } from './events/handlers';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Product]),
+    TypeOrmModule.forFeature([Product, Discount]),
     ClientsModule.register([
       {
         name: 'CATALOG_SERVICE',
@@ -20,13 +22,14 @@ import { QueryHandlers } from "./queries/handlers";
         },
       },
     ]),
-    CqrsModule
+    CqrsModule,
   ],
   controllers: [ProductController],
   providers: [
     ProductService,
     ...CommandHandlers,
     ...QueryHandlers,
+    ...EventHandlers,
   ],
 })
 export class ProductModule {}

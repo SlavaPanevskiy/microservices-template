@@ -17,4 +17,10 @@ export class CatalogItemService {
       .send<CatalogItem>({ type: 'create-product' }, { someParam: 15 })
       .toPromise();
   }
+
+  public async applyProductDiscount(): Promise<CatalogItem> {
+    return this.client
+      .send<CatalogItem>({ type: 'apply-product-discount' }, { someParam: 15 })
+      .toPromise();
+  }
 }

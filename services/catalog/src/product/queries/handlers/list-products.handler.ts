@@ -1,8 +1,8 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Repository } from "typeorm";
-import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ListProductsQuery } from '../impl';
-import { Product } from "../../product.entity";
+import { Product } from '../../domain/product.entity';
 
 @QueryHandler(ListProductsQuery)
 export class ListProductsHandler implements IQueryHandler<ListProductsQuery> {

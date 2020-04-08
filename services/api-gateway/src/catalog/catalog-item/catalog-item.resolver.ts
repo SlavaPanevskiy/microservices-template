@@ -15,4 +15,9 @@ export class CatalogItemResolver {
   public async createCatalogItem(): Promise<CatalogItem> {
     return this.catalogItemService.createCatalogItem();
   }
+
+  @Mutation()
+  public async applyProductDiscount(): Promise<CatalogItem> {
+    return this.catalogItemService.applyProductDiscount();
+  }
 }
